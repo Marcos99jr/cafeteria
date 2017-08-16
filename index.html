@@ -1,0 +1,98 @@
+<html>
+<head>	
+	<meta charset="utf-8" />
+	<script src="./js/jquery.min.js"></script>
+	
+	<style>
+	
+	.lixeira {
+			width: 20px;
+			height: 20px;
+		}
+	
+	table{
+	border:1px solid #FF0000;
+	border-collapse: collapse;
+	}
+	</style>
+	
+	<script>
+		$(function(){
+		
+			function Produto(id,nome,quant, valorUnitario){
+			 return{"id" : id, 
+					"nome" : nome,
+					"quant" : quant,
+					"valorUnitario" :valorUnitario};
+			}
+		
+			
+			var cardapio = [
+					Produto(1,"Capuccino", 1,7),
+					Produto(2,"Espresso",1,4),
+					Produto(3,"Fraputino",1,9),
+					Produto(4,"Chocatino", 1,5),
+					Produto(5,"Frapê",1,12),
+					Produto(6,"Suco de Laranja",1,10),
+					Produto(7,"Açai",1,12)					
+			];
+			$.each(cardapio, function(ind,item){
+				$("#cardapio").append($("<li />").text(item.nome));
+			})
+			$("#cardapio").on("click","li",function(){
+				var produtoEscolhido = $(this).text();
+				
+				
+				$.each(cardapio,function(indice,item){
+					if(produtoEscolhido==item.nome){
+					
+						$("#pedidos")
+						
+						.append($("<tr />")
+							.append($("<td />").text(produtoEscolhido))
+							.append($("<td /> ").text(item.quant) )
+							.append($("<td /> ").text(item.valorUnitario) )
+						);
+						
+					}
+					
+				
+				});
+				
+				
+				
+				
+				
+				
+			
+			});
+			
+		});
+	</script>
+		
+	
+</head>
+
+<body>
+	
+	<h>CAFETERIA CEFET</h>
+	<p>Menu</p>
+	<div class="select">
+		<ul id="cardapio">
+		
+		</ul>
+	
+	</div>
+	<table id="pedidos">
+	<tr>
+		<th> Nome </th> 
+		<th> Quantidade </th>
+		<th> Valor Unitario </th> 
+	</tr>
+
+	
+	
+	</table>
+
+</body>
+</html>
